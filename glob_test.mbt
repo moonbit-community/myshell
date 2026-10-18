@@ -190,7 +190,7 @@ async test "an expansion feeds a command as separate literal arguments" {
   let matched = @myshell.glob("*.txt", cwd=root)
   assert_eq(matched, ["od d*name.txt", "plain.txt"])
   let output = @myshell.Cmd("ls", matched, cwd=root).output().check()
-  assert_eq(output.stdout.split("\n").filter(l => !l.is_empty()).length(), 2)
+  assert_eq(output.stdout.split("\n").filter(l => !l.is_empty()).count(), 2)
   @myshell.Cmd("rm", ["-rf", root]).status() |> ignore
 }
 
