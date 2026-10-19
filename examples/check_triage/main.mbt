@@ -13,7 +13,7 @@
 ///   moon run examples/check_triage [project-dir]
 
 ///|
-fn start_line(loc : String) -> Int raise {
+fn start_line(loc : String) -> Int32 raise {
   lexmatch loc {
     (re"^[0-9]+" as line, after=_rest) => @string.parse_int(line)
     _ => fail("unrecognized loc: \{loc}")
@@ -30,8 +30,8 @@ async fn main {
     is { "diagnostics": Array(diagnostics), "status": String(status), .. } else {
     fail("unexpected report: \{report.stderr}")
   }
-  let by_file : Map[String, Array[(Int, String, String)]] = Map([])
-  let by_level : Map[String, Int] = Map([])
+  let by_file : Map[String, Array[(Int32, String, String)]] = Map([])
+  let by_level : Map[String, Int32] = Map([])
   for diagnostic in diagnostics {
     guard diagnostic
       is {

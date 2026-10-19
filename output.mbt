@@ -9,8 +9,8 @@
 /// Text fields use lossy UTF-8 decoding so arbitrary process output cannot
 /// cancel a run. `stdout_bytes` and `stage_stderr_bytes` keep the exact bytes.
 pub struct Output {
-  exit_code : Int
-  stage_exit_codes : Array[Int]
+  exit_code : Int32
+  stage_exit_codes : Array[Int32]
   stdout : String
   stdout_bytes : Bytes
   stderr : String
@@ -56,12 +56,12 @@ pub(all) suberror ProcessError {
   EmptyProgram
   EmptyPipeline
   InvalidEnvironmentName(String)
-  InvalidOutputLimit(Int)
-  InvalidGracePeriod(Int)
-  OutputLimitExceeded(stream~ : String, limit~ : Int)
+  InvalidOutputLimit(Int32)
+  InvalidGracePeriod(Int32)
+  OutputLimitExceeded(stream~ : String, limit~ : Int32)
   NulByte(String)
-  StdinOnNonFirstStage(Int)
-  RedirectOnNonFinalStage(Int)
+  StdinOnNonFirstStage(Int32)
+  RedirectOnNonFinalStage(Int32)
   StdoutNotCaptured
   CommandFailed(Output)
 } derive(Debug)

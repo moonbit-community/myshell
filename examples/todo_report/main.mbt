@@ -30,7 +30,7 @@ async fn main {
     println("grep failed: \{hits.stderr}")
     return
   }
-  let by_file : Map[String, Array[(Int, String)]] = Map([])
+  let by_file : Map[String, Array[(Int32, String)]] = Map([])
   let mut total = 0
   for line in hits.stdout.split("\n") {
     guard hit_pattern.execute(line) is Some(m) else { continue }
