@@ -28,12 +28,12 @@ fn kind_of(subject : StringView) -> String {
 }
 
 ///|
-fn bump(counter : Map[String, Int], key : String) -> Unit {
+fn bump(counter : Map[String, Int32], key : String) -> Unit {
   counter[key] = counter.get(key).unwrap_or(0) + 1
 }
 
 ///|
-fn print_counts(counter : Map[String, Int]) -> Unit {
+fn print_counts(counter : Map[String, Int32]) -> Unit {
   let rows = counter.to_array()
   rows.sort_by_key(row => -row.1)
   for row in rows {
@@ -44,8 +44,8 @@ fn print_counts(counter : Map[String, Int]) -> Unit {
 ///|
 async fn main {
   let limit = if @env.args() is [_, n, ..] { n } else { "500" }
-  let authors : Map[String, Int] = Map([])
-  let kinds : Map[String, Int] = Map([])
+  let authors : Map[String, Int32] = Map([])
+  let kinds : Map[String, Int32] = Map([])
   let mut commits = 0
   let code = @myshell.Cmd("git", [
     "log", "-n", limit, "--pretty=format:%an%x09%s",

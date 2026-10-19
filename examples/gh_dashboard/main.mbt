@@ -89,7 +89,7 @@ async fn main {
     println("  #\{number.to_int()} [\{state}] \{title} (\{day_of(updated)})")
   }
   println("\nCI, last \{run_items.length()} runs:")
-  let ci : Map[String, Map[String, Int]] = Map([])
+  let ci : Map[String, Map[String, Int32]] = Map([])
   for item in run_items {
     guard item
       is { "workflowName": String(name), "conclusion": String(conclusion), .. } else {
@@ -104,7 +104,7 @@ async fn main {
     println("  \{name}: \{parts.join(", ")}")
   }
   println("\nopen issues: \{issue_items.length()}")
-  let labels : Map[String, Int] = Map([])
+  let labels : Map[String, Int32] = Map([])
   for item in issue_items {
     guard item is { "labels": Array(entries), .. } else { continue }
     if entries is [] {

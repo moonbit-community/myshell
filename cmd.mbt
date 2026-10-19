@@ -47,7 +47,7 @@ pub(all) enum Redirect {
 /// roughly a second, not after 20 milliseconds.
 pub(all) enum Cancel {
   Kill
-  Graceful(grace_ms~ : Int)
+  Graceful(grace_ms~ : Int32)
 } derive(Debug)
 
 ///|
@@ -98,13 +98,13 @@ pub fn Cmd::Cmd(
   program : String,
   arguments : Array[String],
   cwd? : String,
-  env? : Map[String, String] = {},
-  inherit_env? : Bool = true,
+  env~ : Map[String, String] = {},
+  inherit_env~ : Bool = true,
   stdin? : Stdin,
-  stdout? : Redirect = Capture,
-  stderr? : Redirect = Capture,
-  cancel? : Cancel = Kill,
-  no_console_window? : Bool = false,
+  stdout~ : Redirect = Capture,
+  stderr~ : Redirect = Capture,
+  cancel~ : Cancel = Kill,
+  no_console_window~ : Bool = false,
 ) -> Cmd {
   {
     program,
